@@ -1,5 +1,7 @@
 package org.launchcode.techjobs.oo.test;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -12,6 +14,12 @@ import static org.junit.Assert.*;
  */
 @RunWith(JUnit4.class)
 public class JobTest {
+/*    private static Job testJob;
+    @Before
+    public void setup () {
+        testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    }*/
+
     @Test
     public void testSettingJobId () {
         Job job1 = new Job();
@@ -41,9 +49,30 @@ public class JobTest {
 
     @Test
     public void testJobsForEquality () {
-        Job sameJob1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-        Job sameJob2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        Job sameJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertFalse(sameJob1 == sameJob2);
+        assertFalse(testJob == sameJob);
     }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine () {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        assertTrue(testJob.toString().startsWith("\n"));
+        assertTrue(testJob.toString().endsWith("\n"));
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData () {
+        Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        String sample = testJob.toString();
+
+    }
+
+    /*@Test
+    public void testToStringHandlesEmptyField () {
+
+    }*/
 }
