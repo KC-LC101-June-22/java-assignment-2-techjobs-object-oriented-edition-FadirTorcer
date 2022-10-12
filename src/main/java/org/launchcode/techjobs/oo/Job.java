@@ -2,6 +2,8 @@ package org.launchcode.techjobs.oo;
 
 import java.util.Objects;
 
+import static org.junit.Assert.assertEquals;
+
 public class Job {
 
     private int id;
@@ -94,7 +96,24 @@ public class Job {
     }
 
     public String toString () {
+        String nameX = this.name;
+        String employerX = this.employer.getValue();
+        String locationX = this.location.getValue();
+        String positionX = this.positionType.getValue();
+        String competencyX = this.coreCompetency.getValue();
+
+        if (nameX == "") { nameX = "Data not available"; }
+        if (employerX == "") { employerX = "Data not available"; }
+        if (locationX == "") { locationX = "Data not available"; }
+        if (positionX == "") { positionX = "Data not available"; }
+        if (competencyX == "") { competencyX = "Data not available"; }
+
         return "\n" +
-                "\n";
+                "ID: " + this.id + "\n" +
+                "Name: " + nameX + "\n" +
+                "Employer: " + employerX + "\n" +
+                "Location: " + locationX + "\n" +
+                "Position Type: " + positionX + "\n" +
+                "Core Competency: " + competencyX + "\n";
     }
 }

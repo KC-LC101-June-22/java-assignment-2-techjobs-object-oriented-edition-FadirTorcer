@@ -1,7 +1,5 @@
 package org.launchcode.techjobs.oo.test;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -59,8 +57,10 @@ public class JobTest {
     public void testToStringStartsAndEndsWithNewLine () {
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        assertTrue(testJob.toString().startsWith("\n"));
-        assertTrue(testJob.toString().endsWith("\n"));
+        String sample = testJob.toString();
+        //assertTrue startsWith, endsWith("\n")
+        assertEquals(sample.charAt(0), '\n');
+        assertEquals(sample.charAt(sample.length() - 1), '\n');
     }
 
     @Test
@@ -68,11 +68,29 @@ public class JobTest {
         Job testJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
         String sample = testJob.toString();
-
+        //assertTrue(sample.contains("ID: " + testJob.getId() + "\n"));
+        //assertEquals(sample.contains("ID: " + testJob.getId() + "\n"), true);
+        assertEquals("\nID: " + testJob.getId() + "\n" + "Name: " + testJob.getName() + "\n" + "Employer: " + testJob.getEmployer().getValue() + "\n" + "Location: " + testJob.getLocation().getValue() + "\n" + "Position Type: " + testJob.getPositionType().getValue() + "\n" + "Core Competency: " + testJob.getCoreCompetency().getValue() + "\n", sample);
     }
 
-    /*@Test
+    @Test
     public void testToStringHandlesEmptyField () {
-
-    }*/
+        Job swissJob = new Job("Product manager", new Employer(""), new Location("Lucerne"), new PositionType(""), new CoreCompetency("Polyglot"));
+        String sample = swissJob.toString();
+/*        if (swissJob.getName() == "") {
+            assertEquals(, "Data not available");
+        }
+        if (swissJob.getEmployer().getValue() == "") {
+            assertEquals(, "Data not available");
+        }
+        if (swissJob.getLocation().getValue() == "") {
+            assertEquals(, "Data not available");
+        }
+        if (swissJob.getPositionType().getValue() == "") {
+            assertEquals(, "Data not available");
+        }
+        if (swissJob.getCoreCompetency().getValue() == "") {
+            assertEquals(, "Data not available");
+        }*/
+    }
 }
