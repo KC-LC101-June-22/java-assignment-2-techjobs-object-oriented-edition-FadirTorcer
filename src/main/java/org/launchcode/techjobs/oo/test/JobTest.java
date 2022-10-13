@@ -113,4 +113,11 @@ public class JobTest {
             assertEquals(list.get(5), "Data not available");
         }
     }
+
+    @Test
+    public void testForEmptyJobObject () {
+        Job nothingBurger = new Job();
+
+        assertEquals(nothingBurger.toString(), "OOPS! This job does not seem to exist.");
+    }
 }

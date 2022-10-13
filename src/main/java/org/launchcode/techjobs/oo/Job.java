@@ -109,6 +109,9 @@ public class Job {
         if (competencyX == "") { competencyX = "Data not available"; }
 
         //-<[BONUS]>- if all but ID are empty, return "OOPS! This job does not seem to exist."
+        if (nameX == null && employerX == null && locationX == null && positionX == null && competencyX == null) {
+            return "OOPS! This job does not seem to exist.";
+        }
 
         return "\n" +
                 "ID: " + this.id + "\n" +
