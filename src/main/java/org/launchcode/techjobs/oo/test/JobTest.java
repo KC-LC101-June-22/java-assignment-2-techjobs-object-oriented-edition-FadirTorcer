@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.LinkedList;
 
 import static org.junit.Assert.*;
 
@@ -77,20 +80,37 @@ public class JobTest {
     public void testToStringHandlesEmptyField () {
         Job swissJob = new Job("Product manager", new Employer(""), new Location("Lucerne"), new PositionType(""), new CoreCompetency("Polyglot"));
         String sample = swissJob.toString();
-/*        if (swissJob.getName() == "") {
-            assertEquals(, "Data not available");
+
+        //Matches anything that starts with a ": " and ends with "\n"
+        Pattern pattern = Pattern.compile("(?<=: ).+?(?=\n)");
+        Matcher matcher = pattern.matcher(sample);
+
+        LinkedList<String> list = new LinkedList<String>();
+
+        // Loop through and find all matches and store them into the List
+        while(matcher.find()) {
+            list.add(matcher.group());
+        }
+
+        // Print out the contents of this List
+        //  for(String match : list) {
+        //      System.out.println(match);
+        //  }
+
+        if (swissJob.getName() == "") {
+            assertEquals(list.get(1), "Data not available");
         }
         if (swissJob.getEmployer().getValue() == "") {
-            assertEquals(, "Data not available");
+            assertEquals(list.get(2), "Data not available");
         }
         if (swissJob.getLocation().getValue() == "") {
-            assertEquals(, "Data not available");
+            assertEquals(list.get(3), "Data not available");
         }
         if (swissJob.getPositionType().getValue() == "") {
-            assertEquals(, "Data not available");
+            assertEquals(list.get(4), "Data not available");
         }
         if (swissJob.getCoreCompetency().getValue() == "") {
-            assertEquals(, "Data not available");
-        }*/
+            assertEquals(list.get(5), "Data not available");
+        }
     }
 }

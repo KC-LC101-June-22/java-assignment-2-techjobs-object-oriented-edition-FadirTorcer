@@ -108,6 +108,8 @@ public class Job {
         if (positionX == "") { positionX = "Data not available"; }
         if (competencyX == "") { competencyX = "Data not available"; }
 
+        //-<[BONUS]>- if all but ID are empty, return "OOPS! This job does not seem to exist."
+
         return "\n" +
                 "ID: " + this.id + "\n" +
                 "Name: " + nameX + "\n" +
